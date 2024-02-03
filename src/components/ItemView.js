@@ -47,15 +47,18 @@ useEffect(() => {
 
   return (
     <>
+    <h1 style={{textAlign:"center", position:"sticky"}}>{props.categoryName}</h1>
       <Item products={products}/>
     </>
   )
 }
 ItemView.defaultProps={
-  category:""
+  category:"",
+  categoryName:""
 }
 ItemView.propTypes={
-  category: PropTypes.string
+  category: PropTypes.string,
+  categoryName:PropTypes.string
 }
 
 export default ItemView
