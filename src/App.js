@@ -21,8 +21,8 @@ function App() {
         <Route exact path='/' element={<Home key="1" setProgress={setProgress}/>}/>
         <Route exact path='/electronics' element={<ItemView  key="2" setProgress={setProgress} category="/category/electronics"  categoryName="Electronics"/>}/>
         <Route exact path='/jewelery' element={<ItemView key="3" setProgress={setProgress} category="/category/jewelery"  categoryName="Jewelery"/>}/>
-        <Route exact path='/mensclothing' element={<ItemView key="4" setProgress={setProgress} category="/category/men's clothing"  categoryName="Men's Clothing"/>}/>
-        <Route exact path='/womensclothing' element={<ItemView key="5" setProgress={setProgress} category="/category/women's clothing"  categoryName="Women's Clothing"/>}/>
+        <Route exact path="/men's clothing" element={<ItemView key="4" setProgress={setProgress} category="/category/men's clothing"  categoryName="Men's Clothing"/>}/>
+        <Route exact path="/women's clothing" element={<ItemView key="5" setProgress={setProgress} category="/category/women's clothing"  categoryName="Women's Clothing"/>}/>
       </Routes>
     </div>  
   );

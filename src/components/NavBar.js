@@ -15,8 +15,8 @@ function NavBar() {
         <Link className="nav-link" aria-current="page" to='/'>Home</Link>
         <Link className="nav-link" to='/electronics'>Electronics</Link>
         <Link className="nav-link" to='/jewelery'>Jewelery</Link> 
-        <Link className="nav-link" to='/mensclothing'>Men's Clothing</Link>
-        <Link className="nav-link" to='/womensclothing'>Women's Clothing</Link>
+        <Link className="nav-link" to="/men's clothing">Men's Clothing</Link>
+        <Link className="nav-link" to="/women's clothing">Women's Clothing</Link>
       </div>
     </div>
     <form className="d-flex mt-3 mx-3" role="search">
