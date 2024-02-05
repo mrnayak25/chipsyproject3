@@ -76,3 +76,6 @@ flex-direction: column;
   font-family: "Courier New", Courier, monospace;
   color: aquamarine;
 }
+.carousel-control-prev:hover{
+  background-color: #0000002a;
+}

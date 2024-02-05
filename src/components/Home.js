@@ -63,8 +63,8 @@ function Home(props) {
                         </div>
                     ))}
                 </div>
-                <button className="carousel-control-prev btn-light" type="button" data-bs-target="#carouselId"  data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <button className="carousel-control-prev" type="button" data-bs-target="#carouselId"  data-bs-slide="prev">
+                    <span className="carousel-control-prev-icon text-secondary" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>
                 </button>
                 <button className="carousel-control-next" type="button" data-bs-target="#carouselId"  data-bs-slide="next">
