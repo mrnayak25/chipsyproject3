@@ -20,9 +20,10 @@ function NavBar(props) {
         <Link className="nav-link" to='/jewelery'>Jewelery</Link> 
         <Link className="nav-link" to="/men's clothing">Men's Clothing</Link>
         <Link className="nav-link" to="/women's clothing">Women's Clothing</Link>
+        <Link className="nav-link" to="/cart">Cart</Link>
       </div>
       <div className='d-flex justify-content-center text-center navbar-nav'>
-     <Link  className="nav-link text-center" to="/signin">signin</Link>
+     <Link  className="nav-link mx-5" to="/signin">SignIn</Link>
     <form className="d-flex mt-3 mx-3" role="search">
           <input className="form-control me-2" type="search"  value={props.searchQuery} placeholder="Search" aria-label="Search"  onChange={onchange}/>
           <Link to="/search"><button className="btn btn-outline-success" type="submit">Search</button></Link>

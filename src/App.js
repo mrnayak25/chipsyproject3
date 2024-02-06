@@ -11,6 +11,7 @@ import Search from './components/Search';
 import SingleItem from './components/SingleItem';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
+import Cart from './components/Cart';
 
 function App() {
   const [progress,setProgress]=useState(0)
@@ -34,6 +35,7 @@ function App() {
         <Route exact path="/singleproduct" element={<SingleItem key="7" setProgress={setProgress} id={id}/>}/>
         <Route ecact path="/signin" element={<SignIn/>}/>
         <Route exact path="/signup" element={<SignUp/>}/>
+        <Route exact path="/cart" element={<Cart/>}/>
       </Routes>
     </div>  
   );

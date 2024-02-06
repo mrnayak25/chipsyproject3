@@ -23,7 +23,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.card-title ,.card-text{
+  color: black;
+}
 .App-link {
   color: #61dafb;
 }
@@ -42,7 +44,7 @@
   text-align: center;
 }
 .card-img-top {
-  width: 20vw;
+  width:15vw;
   height: 20vw;
   object-fit:fill;
 }
@@ -107,4 +109,36 @@ a{
   padding: 25px;
   width: 100%;
   justify-content: center;
+}
+.product {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.product-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.product-info {
+  flex: 1;
+}
+
+.quantity-control button {
+  background-color: #ddd;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: large;
+}
+
+.price {
+  margin-top: 10px;
+}
+
+.total-price {
+  margin-top: 10px;
+  font-weight: bold;
 }
