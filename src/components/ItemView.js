@@ -3,23 +3,7 @@ import PropTypes from "prop-types";
 import Item from './Item'
 
 function ItemView(props) {
-    const sampleproducts =[{
-        'id':1,
-        'title': 'test product',
-        'price': 13.5,
-        'description': 'lorem ipsum set',
-        'image': 'https://i.pravatar.cc',
-        'category': 'electronic'
-},
-{
-    'id':2,
-    'title': 'test product2',
-    'price': 15.5,
-    'description': 'lorem ipsum set',
-    'image': 'https://i.pravatar.cc',
-    'category': 'electronic'
-}
-]
+    const sampleproducts =[]
 const [products,setProducts]=useState(sampleproducts)
 
 const updateproducts = async ()=>{
@@ -48,7 +32,7 @@ useEffect(() => {
   return (
     <>
     <h1 style={{textAlign:"center", position:"sticky"}}>{props.categoryName}</h1>
-      <Item products={products}/>
+      <Item products={products} setId={props.setId}/>
     </>
   )
 }

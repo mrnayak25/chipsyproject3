@@ -36,14 +36,19 @@
     transform: rotate(360deg);
   }
 }
+.card-img-div{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
 .card-img-top {
-  width: auto;
+  width: 20vw;
   height: 20vw;
-  object-fit: fill;
+  object-fit:fill;
 }
 .carousel-image {
-  height: 300px; /* Set the fixed height */
-  object-fit: contain; /* Prevent image from stretching */
+  height: 300px; 
+  object-fit: contain; 
   aspect-ratio: 3/2;
 }
 
@@ -64,12 +69,12 @@
   border-radius: 20px;
 }
 .carousel-txt-div{
-flex-grow: 1; /* Take up the remaining space */
-display: flex; /* Ensure it's a flex container */
-align-items: center; /* Vertically center the content */
-justify-content: center; /* Horizontally center the content */
+flex-grow: 1; 
+display: flex;
+align-items: center;
+justify-content: center;
 padding: 5%;
-text-align: center; /* Center text within the container */
+text-align: center; 
 flex-direction: column;
 }
 .carousel-txt-div h2 {
@@ -78,4 +83,28 @@ flex-direction: column;
 }
 .carousel-control-prev:hover{
   background-color: #0000002a;
+}
+a{
+  text-decoration: none;
+  text-decoration-color: none;
+}
+.button-div{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+  padding: 10px;
+}
+.button-div img{
+  height: 50px;
+  cursor: pointer;
+}
+.cart-img{
+  height: 40px;
+}
+.main-img{
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  width: 100%;
+  justify-content: center;
 }

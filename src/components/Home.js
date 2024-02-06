@@ -72,7 +72,8 @@ function Home(props) {
                     <span className="visually-hidden">Next</span>
                 </button>
             </div>
-                <ItemView setProgress={props.setProgress} category=" " />
+            <h1 className='mx-5'>Trends</h1>
+                <ItemView setProgress={props.setProgress} setId={props.setId} category=" " />
           
         </div>
   )
