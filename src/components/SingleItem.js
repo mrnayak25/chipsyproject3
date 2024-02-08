@@ -34,7 +34,7 @@ function SingleItem(props) {
         <p className="fs-1 mx-5 my-5 fw-medium">Price: ${product.price}</p>
         <div className="mb-4">
           <button className="btn btn-success mx-3 fs-4">Buy Now</button>
-          <button type="button" className="btn btn-outline-secondary waves-effect fs-4"><img className="cart-img" src={cart} alt="cart"/>  Add To Cart</button>   
+          <button type="button"  className="btn btn-outline-secondary waves-effect fs-4"><img className="cart-img" src={cart} alt="cart"/>  Add To Cart</button>   
         </div>
       </div>
     </div>

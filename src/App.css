@@ -112,13 +112,18 @@ a{
 }
 .product {
   display: flex;
-  margin-bottom: 20px;
+  margin:30px;
+  padding: 20px;
+  background-color: aliceblue;
+  border-radius: 20px;
+  box-shadow: inset;
 }
 
 .product-image img {
   width: 100px;
-  height: 100px;
-  object-fit: cover;
+  height: auto;
+  max-height: fit-content;
+  object-fit: fit;
   margin-right: 20px;
 }
 
@@ -141,4 +146,13 @@ a{
 .total-price {
   margin-top: 10px;
   font-weight: bold;
+}
+.trash{
+  border: none;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: transparent;
+}
+.trash i{
+  font-size: x-large;
 }

@@ -25,30 +25,42 @@ const updateproducts = async ()=>{
       console.error('Error fetching data:', error);
   }
 }
+
+
 useEffect(() => {
-    //  document.title=`${cap}`
    updateproducts();
    console.log(products);
      // eslint-disable-next-line
    },[]);
+
+
    useEffect(() => {
-    const storedCartItems = localStorage.getItem("cartItems");
+    const storedCartItems = localStorage.getItem("acartItems");
     if (storedCartItems) {
       setCartItems(JSON.parse(storedCartItems));
     }
   }, [cartItems]);
 
   const store = () => {
-    const items = JSON.stringify({
-      'id':selectedProduct.id,
-      'date':new Date().toLocaleString(),
-      'quantity':quantity,
-      'product':selectedProduct
-    });
-    localStorage.setItem("cartItems",...cartItems,items);
+    const items = {
+      'id': selectedProduct.id,
+      'date': new Date().toLocaleString(),
+      'quantity': quantity,
+      'product': selectedProduct
+    };
+    const storedCartItems = JSON.parse(localStorage.getItem("acartItems")) || [];
+    const existingItemIndex = storedCartItems.findIndex(item => item.id === selectedProduct.id);
+
+    if (existingItemIndex !== -1) {
+      storedCartItems[existingItemIndex].quantity += quantity;
+    } else {
+      storedCartItems.push(items);
+    }
+    
+    localStorage.setItem("acartItems", JSON.stringify(storedCartItems));
     ref.current.click();
-    setQuantity(0)
-  }
+    setQuantity(1);
+  };
 
    const openModel = (index) => {
     setSelectedProduct(products[index]);
