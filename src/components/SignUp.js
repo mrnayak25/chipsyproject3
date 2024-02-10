@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/SignIn.css";
 import '@fortawesome/fontawesome-free/css/all.css'
 import { Link } from "react-router-dom";
 
 function SignUp() {
+  const[users,setUsers]=useState([])
   const [formData, setFormData] = useState({
-    email: "",
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    city: "",
-    street: "",
-    number: "1342",
-    zipcode: "",
-    lat: "30.24788",
-    long: "20.5419",
-    phone: "",
+    "email": "",
+    "username": "",
+    "password": "",
+    "firstName": "",
+    "lastName": "",
+    "city": "",
+    "street": "",
+    "zipcode": "",
+    "phone": "",
+    "currentuser":"true"
   });
+  useEffect(() => {
+    const storedUsers = localStorage.getItem("users");
+    if (storedUsers) {
+      setUsers(JSON.parse(storedUsers));
+    }
+    console.log(storedUsers)
+  },[])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,9 +35,13 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    localStorage.setItem('loggedInUser', JSON.stringify(formData));
-    console.log('Logged in:', formData);
+    users.forEach(user=>{
+      user.currentuser=false
+    })
+    const newUser=[...users]
+    newUser.push(formData)
+    localStorage.setItem('users', JSON.stringify(newUser));
+    console.log('Logged in:', newUser);
   }
 
   return (

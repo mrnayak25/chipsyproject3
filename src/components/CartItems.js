@@ -5,15 +5,18 @@ function CartItems(props) {
   const [quantity, setQuantity] = useState(props.item.quantity);
   const product = props.item.product;
 
-  const handleIncrement = (itemQuantity) => {
-    setQuantity(quantity + 1);
-    props.updateCart(product, itemQuantity + 1);
+  const handleIncrement = () => {
+    console.log("updatingcart")
+    const updatedQuantity = quantity + 1;
+    setQuantity(updatedQuantity);
+    props.updateCart(props.index,updatedQuantity);
   };
 
-  const handleDecrement = (itemQuantity) => {
+  const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity(quantity- 1);
-      props.updateCart(product, itemQuantity - 1);
+      const updatedQuantity = quantity - 1;
+    setQuantity(updatedQuantity);
+      props.updateCart(props.index,updatedQuantity);
     }
   };
 
@@ -22,7 +25,7 @@ function CartItems(props) {
     const price = parseFloat(String(product.price).replace("$", ""));
     setTotal(price * quantity);
   }, [product.price, quantity]);
-
+ 
   return (
     <div>
       <div className="product">
@@ -32,9 +35,19 @@ function CartItems(props) {
         <div className="product-info">
           <h3>{product.title}</h3>
           <div className="quantity-control">
-            <button onClick={()=>{handleDecrement(quantity)}}>-</button>
+            <button
+              onClick={() => {
+                handleDecrement();
+              }}>
+              -
+            </button>
             <span>{quantity}</span>
-            <button onClick={()=>{handleIncrement(quantity)}}>+</button>
+            <button
+              onClick={() => {
+                handleIncrement();
+              }}>
+              +
+            </button>
           </div>
           <div className="price">Price: ${product.price.toFixed(2)}</div>
           <div className="total-price">Total: ${total.toFixed(2)}</div>
@@ -45,8 +58,8 @@ function CartItems(props) {
             onClick={() => {
               props.deleteCart(props.index);
             }}>
-            <i class="fa-solid fa-trash"></i>
-          </button>
+            <i className="fa-solid fa-trash"></i>
+          </button> 
         </div>
       </div>
     </div>

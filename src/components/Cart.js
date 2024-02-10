@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import CartItems from './CartItems';
+import '../App.css'
+import placeholderImage from '../images/no_data.jpg'
 
 function Cart() {
 const [items,setItems] =useState([])
 const [grandTotal,setGrandTotal]=useState(0)
+
+
   useEffect(() => {
     const storedCartItems = localStorage.getItem("acartItems");
     if (storedCartItems) {
@@ -17,26 +21,54 @@ const [grandTotal,setGrandTotal]=useState(0)
     newItems[index].quantity = quantity;
     localStorage.setItem("acartItems", JSON.stringify(newItems));
     setItems(newItems);
+    console.log("updating index :"+index+""+quantity )
+    return newItems
   }
 
+  useEffect(() => {
+    let total = 0;
+    items.forEach(item => {
+      total += item.product.price * item.quantity;
+    });
+    setGrandTotal(total.toFixed(2));
+  }, [items]);
+
   const deleteCart = (index) => {
-    console.log("deleting index :"+index)
-    const newItems = items.filter((item, i) => i !== index);
-    localStorage.setItem("acartItems", JSON.stringify(newItems));
-    setItems(newItems);
+      const check =  window.confirm("Are you sure you want to delete this item?")
+      if (check) {
+        console.log("deleting index :" + index);
+        const newItems = items.filter((item, i) => i !== index);
+        localStorage.setItem("acartItems", JSON.stringify(newItems));
+        setItems(newItems);
+      }
   }
-  return (
+  return  (
     <div>
-      <h1 className='mx-5'>Your Cart</h1>
-      {items.map((item,index)=>{
-        return(
-          <div key={index}>
-        <CartItems key={index} item={item} index={index} deleteCart={deleteCart} updateCart={updateCart} />
-        </div>
-      )})}
-      
+        <h1 className='mx-5'>Your Cart</h1>
+        {items.length > 0 ? (
+            <div>
+                {items.map((item, index) => (
+                    <div key={index}>
+                        <CartItems key={index} item={item} index={index} deleteCart={deleteCart} updateCart={updateCart} />
+                    </div>
+                ))}
+                <div className="sticky">
+                    <div className='cartBottom'>
+                        <div className='d-flex'>
+                            <h1>Grand Total: </h1>
+                            <h1>${grandTotal}</h1>
+                        </div>
+                        <div>
+                            <button className="btn btn-warning">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ) : (
+            <img className="img-fluid rounded mx-auto" src={placeholderImage} alt="Placeholder" />
+        )}
     </div>
-  )
+)
 }
 
 export default Cart

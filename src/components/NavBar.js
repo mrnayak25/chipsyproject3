@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import imgcart from '../images/trolley.png'
+import searchbar from '../images/loupe.png'
+import '../App.css'
 
 function NavBar(props) {
-  const onchange = (e) => {
-    props.setSearchQuery(e.target.value);
-  };
+ 
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -20,14 +21,13 @@ function NavBar(props) {
         <Link className="nav-link" to='/jewelery'>Jewelery</Link> 
         <Link className="nav-link" to="/men's clothing">Men's Clothing</Link>
         <Link className="nav-link" to="/women's clothing">Women's Clothing</Link>
-        <Link className="nav-link" to="/cart">Cart</Link>
+        
       </div>
       <div className='d-flex justify-content-center text-center navbar-nav'>
-     <Link  className="nav-link mx-5" to="/signin">SignIn</Link>
-    <form className="d-flex mt-3 mx-3" role="search">
-          <input className="form-control me-2" type="search"  value={props.searchQuery} placeholder="Search" aria-label="Search"  onChange={onchange}/>
-          <Link to="/search"><button className="btn btn-outline-success" type="submit">Search</button></Link>
-        </form>
+     <Link  className="nav-link mx-2" to="/signin">SignIn</Link>
+      <Link to="/search"><img className="cart-img mx-2" src={searchbar} alt="cart" /></Link>
+      <Link className="mx-3"to="/cart"><img src={imgcart} alt="cart" className='cart-img'/></Link>
+      
         </div>
     </div>
   </div>

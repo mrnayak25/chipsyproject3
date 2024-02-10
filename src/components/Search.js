@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import placeholderImage from '../images/no_data.jpg'
+import '../App.css'
 
 function Search(props) {
   const [products, setProducts] = useState([]);
+  const[searchQuery,setSearchQuery]=useState("")
 
   const updateproducts = async () => {
     props.setProgress(0);
@@ -17,7 +19,7 @@ function Search(props) {
       props.setProgress(80);
       const searchedProducts = parsedData.filter(
         (product) =>
-          product.title.toLowerCase().search(props.searchQuery.toLowerCase()) >=
+          product.title.toLowerCase().search(searchQuery.toLowerCase()) >=
           0
       );
       setProducts(searchedProducts);
@@ -30,10 +32,18 @@ function Search(props) {
     updateproducts();
     console.log(products);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.searchQuery]);
+  }, [searchQuery]);
+
+  const onchange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <div>
-    <h1 className="mx-5">Results For: "{props.searchQuery}"</h1>
+      <form className="search-form" role="search">
+      <input className="form-control" type="search"  value={searchQuery} placeholder="Search" aria-label="Search"  onChange={onchange}/>
+      </form>
+    <h1 className="mx-5">Results For: "{searchQuery}"</h1>
     {products.length > 0 ? (
       <Item products={products} setId={props.setId} />
     ) : (
