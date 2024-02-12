@@ -3,18 +3,23 @@ import React, { createContext, useState, useEffect } from 'react';
 export const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
-  const [loggedIn, setLoggedIn] = useState(false);
-
+  const [logedIn, setLogedIn] = useState(false);
+  const [user, setUser] = useState({
+    name:"Anup",
+    email:"AHSHH@gmail.com",
+    street:"bla bla",
+    city:"",
+    plone:"08938734848"
+  });
   useEffect(() => {
-    // Check if user is logged in on component mount
-    const user = JSON.parse(localStorage.getItem('loggedInUser'));
-    if (user && user.email && user.password) {
-      setLoggedIn(true);
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      setUser(storedUser);
     }
   }, []);
-;
+
   return (
-    <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+    <AuthContext.Provider value={{logedIn,setLogedIn,user,setUser}}>
       {props.children}
     </AuthContext.Provider>
   );

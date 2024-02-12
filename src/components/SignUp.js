@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../styles/SignIn.css";
 import '@fortawesome/fontawesome-free/css/all.css'
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../context/AuthContext";
 
 function SignUp() {
-  const[users,setUsers]=useState([])
+  const updatecontext= useContext(AuthContext)
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     "email": "",
     "username": "",
@@ -17,31 +20,21 @@ function SignUp() {
     "phone": "",
     "currentuser":"true"
   });
-  useEffect(() => {
-    const storedUsers = localStorage.getItem("users");
-    if (storedUsers) {
-      setUsers(JSON.parse(storedUsers));
-    }
-    console.log(storedUsers)
-  },[])
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    users.forEach(user=>{
-      user.currentuser=false
-    })
-    const newUser=[...users]
-    newUser.push(formData)
-    localStorage.setItem('users', JSON.stringify(newUser));
-    console.log('Logged in:', newUser);
+    localStorage.setItem('user', JSON.stringify(formData));
+    console.log('Logged in:', formData);
+    updatecontext.setUser(formData)
+    updatecontext.setLogedIn(true)
+    navigate("/");
   }
 
   return (

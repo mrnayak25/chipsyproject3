@@ -24,7 +24,7 @@ function NavBar(props) {
         
       </div>
       <div className='d-flex justify-content-center text-center navbar-nav'>
-     <Link  className="nav-link mx-2" to="/signin">SignIn</Link>
+     <Link  className="nav-link mx-2" to="/signUp">SignUp</Link>
       <Link to="/search"><img className="cart-img mx-2" src={searchbar} alt="cart" /></Link>
       <Link className="mx-3"to="/cart"><img src={imgcart} alt="cart" className='cart-img'/></Link>
       

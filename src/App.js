@@ -10,8 +10,8 @@ import Home from './components/Home';
 import Search from './components/Search';
 import SingleItem from './components/SingleItem';
 import SignUp from './components/SignUp';
-import SignIn from './components/SignIn';
 import Cart from './components/Cart';
+import CheckOut from './components/CheckOut';
 
 function App() {
   const [progress,setProgress]=useState(0)
@@ -32,9 +32,10 @@ function App() {
         <Route exact path="/women's clothing" element={<ItemView key="5" setProgress={setProgress} category="/category/women's clothing" setId={setId} categoryName="Women's Clothing"/>}/>
         <Route exact path="/search" element={<Search key="6" setProgress={setProgress} setId={setId} />}/>
         <Route exact path="/singleproduct" element={<SingleItem key="7" setProgress={setProgress} id={id}/>}/>
-        <Route ecact path="/signin" element={<SignIn/>}/>
+    
         <Route exact path="/signup" element={<SignUp/>}/>
         <Route exact path="/cart" element={<Cart/>}/>
+        <Route exact path="/cart/checkout" element={<CheckOut/>}/>
       </Routes>
     </div>  
   );
