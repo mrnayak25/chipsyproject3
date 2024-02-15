@@ -11,12 +11,7 @@ export const AuthProvider = (props) => {
     city:"",
     plone:"08938734848"
   });
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) {
-      setUser(storedUser);
-    }
-  }, []);
+  
 
   return (
     <AuthContext.Provider value={{logedIn,setLogedIn,user,setUser}}>

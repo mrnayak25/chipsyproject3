@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import imgcart from '../images/trolley.png'
 import searchbar from '../images/loupe.png'
 import '../App.css'
+import { AuthContext } from '../context/AuthContext'
 
 function NavBar(props) {
+  const a = useContext(AuthContext)
  
   return (
     <div>
@@ -24,7 +26,18 @@ function NavBar(props) {
         
       </div>
       <div className='d-flex justify-content-center text-center navbar-nav'>
-     <Link  className="nav-link mx-2" to="/signUp">SignUp</Link>
+              {a.logedIn ? (
+                <div className="nav-item dropdown">
+                  <p className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Hello {a.user.name}
+                  </p>
+                  <ul className="dropdown-menu">
+                    <li onClick={()=>{alert("are u sure?")}}>Sign Out</li>
+                  </ul>
+                </div>
+              ) : (
+                <Link className="nav-link mx-2" to="/signIn">SignIn</Link>
+              )}
       <Link to="/search"><img className="cart-img mx-2" src={searchbar} alt="cart" /></Link>
       <Link className="mx-3"to="/cart"><img src={imgcart} alt="cart" className='cart-img'/></Link>
       

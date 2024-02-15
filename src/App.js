@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './App.css';
 import ItemView from './components/ItemView';
 import NavBar from './components/NavBar';
@@ -12,11 +12,20 @@ import SingleItem from './components/SingleItem';
 import SignUp from './components/SignUp';
 import Cart from './components/Cart';
 import CheckOut from './components/CheckOut';
+import { AuthContext } from './context/AuthContext';
 
 function App() {
+  const a = useContext(AuthContext)
   const [progress,setProgress]=useState(0)
   const [id,setId]=useState(0)
 
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    if (storedUser) {
+      a.setUser(storedUser);
+      a.setLogedIn(true)
+    }
+  }, []);
   return (
    <div>
    <NavBar />  

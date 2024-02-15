@@ -1,15 +1,31 @@
 import React, { useEffect, useState } from "react";
 
-function OrderSummary() {
+function OrderSummary(props) {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     const storedCartItems = localStorage.getItem("acartItems");
     if (storedCartItems) {
       setItems(JSON.parse(storedCartItems));
-      console.log(items);
     }
   }, []);
+
+  const calculateTotalAmount = () => {
+    let total = 0;
+    items.forEach((item) => {
+      total += calculateTotal(item.product.price, item.quantity);
+    });
+    return total;
+  };
+
+  const calculateTotal = (price, quantity) => {
+    const totalPrice =parseFloat(String(price).replace("$", "")) * quantity;
+    return totalPrice;
+  };
+
+  useEffect(() => {
+    props.setTotalAmount(calculateTotalAmount());
+  }, [items]); 
 
   return (
     <div className="order-summary-container">
@@ -24,12 +40,12 @@ function OrderSummary() {
                     <img src={item.product.image} className="img-fluid " alt="..." />
                   </div>
                   <div className="col-md-8">
-                    <div lassName="card-body">
+                    <div className="card-body">
                       <h6 className="mx-2">{item.product.title}</h6>
                       <div className="d-flex mx-2">
                         <p className="card-text">Price: ${item.product.price}</p>
                         <p className="card-text mx-4">Quantity: {item.quantity}</p>
-                        <p className="card-text">Total: ${item.price * item.quantity}</p>
+                        <p className="card-text">Total: ${calculateTotal(item.product.price , item.quantity)}</p>
                       </div>
                     </div>
                   </div>
@@ -40,6 +56,7 @@ function OrderSummary() {
         )}
         {items.length === 0 && <p>No items in the order.</p>}
       </div>
+      
     </div>
   );
 }

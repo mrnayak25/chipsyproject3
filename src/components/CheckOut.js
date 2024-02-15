@@ -1,87 +1,81 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../context/AuthContext';
-import OrderSummary from './OrderSummary';
-import useRazorpay from "react-razorpay";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import OrderSummary from "./OrderSummary";
+import '../App.css'
 
 function CheckOut() {
-const getuser =useContext(AuthContext)
-const[totalAmount,setTotalAmount] =useState(0)
-const [formData, setFormData] = useState({
-  "email": getuser.user.email,
- "name":getuser.user.firstName+" "+getuser.user.lastName,
- "address":getuser.user.street+","+getuser.user.street +","+getuser.user. zipcode,
-  "phone":getuser.user.phone,
-})
+  const getuser = useContext(AuthContext);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [formData, setFormData] = useState({
+    email: getuser.user.email,
+    name: getuser.user.firstName + " " + getuser.user.lastName,
+    address: getuser.user.street + "," + getuser.user.street + "," + getuser.user.zipcode,
+    phone: getuser.user.phone,
+  });
 
-const loadScript = (src) => {
-  return new Promise((resolve) => {
-    const script = document.createElement("script");
-    script.src = src;
-    script.onload = () => {
-      resolve(true);
-    };
-    script.onerror = () => {
-      resolve(false);
-    };
-   document.body.appendChild(script);
- });
-};
+  const displayRazorpay = (amount)=>{
+    if(amount === ""){
+    alert("please enter amount");
+    }else{
+      var options = {
+        key: "rzp_test_YCsMZnFVUYsSjM",
+        key_secret:"6InftqEninCAQt8ZzAsdGs5B",
+        amount: amount *100,
+        currency:"INR",
+        name:"My Space",
+        description:"for testing purpose",
+        handler: function(response){
+          alert(response.razorpay_payment_id);
+        },
+        prefill: {
+          name:formData.name,
+          email:formData.email,
+          contact:formData.phone,
+        },
+        notes:{
+          address:"Razorpay Corporate office"
+        },
+        theme: {
+          color:" #ff5e00"
+        }
+      };
+      const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+    }
 
-useEffect(() => {
-  loadScript("https://checkout.razorpay.com/v1/checkout.js");
-});
-
-
-const options = {
-  key: "rzp_test_wQXytoNhWUC7jV",
-  currency: "INR",
-  amount: totalAmount,
-  name: "Learning To Code Online",
-  description: "Test Wallet Transaction",
-  image: "http://localhost:1337/logo.png",
-  order_id: 234556,
-  handler: function (response) {
-    alert(response.razorpay_payment_id);
-    alert(response.razorpay_order_id);
-    alert(response.razorpay_signature);
-  },
-  prefill: {
-    name: "Anirudh Jwala",
-    email: "anirudh@gmail.com",
-    contact: "9999999999",
-  },
-};
-const display =()=>{
-const paymentObject = new window.Razorpay(options);
-paymentObject.open();
-}
-
-   const handleChange = (e) => {
+  }
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
-  }
+  };
   return (
     <div>
-        <div className="checkout-container">
-      <div className="checkout-form-container">
-        <h2>Checkout</h2>
-        <form className="checkout-form">
-      <label htmlFor="name">Name:</label>
-      <input type="text" id="name" name="name" value={formData.name} onChange={handleChange}/>
-      <label htmlFor="email">Email:</label>
-      <input type="email" id="email" name="email" value={formData.email} onChange={handleChange}/>
-      <label htmlFor="address">Address:</label>
-      <textarea id="address" name="address" value={formData.address} onChange={handleChange}></textarea>
-      <button onClick={()=>{display();}}>Place Order</button>
-    </form>
+      <div className="checkout-container">
+        <div className="checkout-form-container">
+          <h2>Checkout</h2>
+          <div className="checkout-form">
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+            <label htmlFor="email">Email:</label>
+            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+            <label htmlFor="address">Address:</label>
+            <textarea id="address" name="address" value={formData.address} onChange={handleChange}></textarea>
+            <h5>Total Amount :{totalAmount}</h5>
+            <button className="btn btn-danger"
+              onClick={() => {
+                displayRazorpay(totalAmount);
+              }}>
+              Place Order
+            </button>
+          </div>
+        </div>
+        <OrderSummary setTotalAmount={setTotalAmount} totalAmount={totalAmount}/>
       </div>
-      <OrderSummary/>
     </div>
-    </div>
-  )
+  );
 }
 
-export default CheckOut
+export default CheckOut;
