@@ -51,8 +51,8 @@ function Home(props) {
                         <div className={"carousel-item" + (index === 0 ? " active" : "")} key={index}>
                             <div className='carousel-div'>
                             <div className='carousel-img-div'>
-                                <div className='card'>
-                            <img src={product.image} className="carousel-image"alt={product.title} />
+                                <div className='carousel-card'>
+                            <img src={product.image} className="carousel-image" alt={product.title} />
                             </div>
                             </div>
                             <div className='carousel-txt-div'>
