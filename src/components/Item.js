@@ -19,15 +19,15 @@ function Item(props) {
                 <div className="card-body">
                 <Link to="/singleproduct" onClick={() => { props.setId(element.id); }}>
                   <h5 className="card-title">
-                    {element.title ? element.title.slice(0, 28) : ""}...
+                    {element.title ? element.title.slice(0, 27) : ""}...
                   </h5>
                   <p className="card-text">
                     {element.description
-                      ? element.description.slice(0, 70)
+                      ? element.description.slice(0, 55)
                       : ""}
                     ...
                   </p>
-                  <h2 className="card-text">${element.price}</h2>
+                  <h2 className="card-prize">${element.price}</h2>
                   </Link>
                 </div>
                 <div className="button-div">

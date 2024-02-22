@@ -44,8 +44,15 @@
   margin: 5px;
   background-color: #e9e7e7;
   border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.card:hover{
+  animation: high 1s linear;
+  animation-fill-mode: backwards;
 }
 .card-img-div {
+  height: 300px;
+  align-items: center;
   display: flex;
   border-radius: 15px;
   padding: 20px;
@@ -54,12 +61,12 @@
   text-align: center;
 }
 .card-img-top {
-  width: 15vw;
-  height: 20vw;
+  width: 100%;
+  max-height: 280px;
   object-fit: fill;
 }
 .card-title,
-.card-text {
+.card-text ,.card-prize{
   color: black;
 }
 .button-div {
@@ -122,6 +129,12 @@ a {
 .cart-img {
   height: 40px;
 }
+
+
+/* single product */
+.single-p-div{
+  display: flex;
+}
 .main-img {
   display: flex;
   align-items: center;
@@ -129,6 +142,31 @@ a {
   width: 100%;
   justify-content: center;
 }
+.main-img img{
+  max-width: 100%;
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+}
+.main-txt{
+text-align: center;
+padding: 20px;
+margin: auto;
+}
+.single-p-title{
+  font-style: oblique;
+  font-size: 30px;
+}
+.single-p-text{
+font-style: normal;
+font-size: 15px;
+}
+.single-p-prize{
+font-weight:bolder;
+font-size: 20px;
+}
+
+/* cart */
 .sticky {
   position: -webkit-sticky;
   position: sticky;
@@ -274,10 +312,28 @@ padding-left: 25px;
   .carousel-txt-div a{
     font-size: 20px;
   }
+  .card-img-div{
+    height: 250px;
+  }
+  .card-img-top{
+    max-height: 230px;
+  }
+  .card-title,.card-prize{
+    font-size: 15px;
+  }
+  .card-text{
+font-size: 12px;
+  }
+  .button-div button{
+    font-size: 12px;
+  }
+  .button-div img{
+    height: 30px;
+  }
 }
 @media (max-width: 767px) {
   .carousel-image {
-    height: 150px;
+    height: 170px;
   }
   .carousel-txt-div h2{
     font-size: 20px;
@@ -285,15 +341,39 @@ padding-left: 25px;
   .carousel-txt-div a{
     font-size: 10px;
   }
+  .form-select{
+    font-size: 14px;
+    width: 150px !important;
+  }
+  .card-img-div{
+    height: 200px;
+  }
+  .card-img-top{
+    max-height: 180px;
+  }
+  .card{
+    display: flex;
+  }
 }
 @media (max-width: 450px) {
   .carousel-image {
     height: 120px;
   }
   .carousel-txt-div h2{
-    font-size: 10px;
+    font-size: 14px;
   }
   .carousel-txt-div a{
-    font-size: 5px;
+    font-size: 8px;
+  }
+
+  .card-img-div{
+    height: 250px;
+  }
+  .form-select{
+    font-size: 14px;
+    width: 150px !important;
+  }
+  .catogery-headder{
+    
   }
 }
